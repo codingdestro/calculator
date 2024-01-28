@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Display from "./components/Display";
 import KeyBox from "./components/KeyBox";
+import Calc from ".";
 
 const keys = [
   "C",
@@ -23,6 +24,7 @@ const keys = [
   ".",
   "=",
 ];
+const calc = new Calc();
 
 function App() {
   const [input, setInput] = useState<string>("");
@@ -65,9 +67,18 @@ function App() {
     if (key === "C") {
       setRight("");
       setLeft("");
+      setData([""]);
     } else if (key === "=") {
-      if (right && !isOperator(input[input.length - 1])) {
-        console.log("calculate the value", input);
+      if (right && left && !isOperator(input[input.length - 1])) {
+        console.log(input)
+        calc.init(input);
+        setInput(() => {
+          let val = calc.do().toString();
+          setLeft("");
+          setRight(val);
+          setData([""]);
+          return val;
+        });
       }
     } else if (key === ".") {
       if (right) {
