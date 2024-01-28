@@ -35,11 +35,21 @@ body {
   cursor: pointer;
   border: none;
   border-radius: 1rem;
-  width: 4.45rem;
-  aspect-ratio: 1/1;
+  // width: 4.45rem;
+  // aspect-ratio: 1/1;
   font-size: 24px;
   font-family: monospace;
   background-color: #faef9b;
+  &:nth-child(17) {
+    grid-column: 1 / span 2;
+  }
+  &:nth-child(4n) {
+    background-color: #f0e9b4;
+  }
+  &:active {
+    scale: 0.9;
+    transition: 0.4s;
+  }
 }
 @mixin box {
   border-radius: 2.5rem - 1rem;
@@ -50,8 +60,9 @@ body {
   height: 100%;
   @include box;
   display: grid;
-  align-items: center;
-  justify-items: center;
+  gap: 10px;
+  // align-items: center;
+  // justify-items: center;
   grid-template-columns: repeat(4, 1fr);
 }
 
@@ -66,9 +77,13 @@ body {
   align-items: end;
   .main {
     font-size: 32px;
+    word-break: break-all;
     width: 100%;
     overflow: hidden;
     font-family: monospace;
     text-align: right;
+  }
+  .fade{
+    color: grey;
   }
 }
