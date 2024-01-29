@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Display from "./components/Display";
 import KeyBox from "./components/KeyBox";
 import Calc from ".";
@@ -31,6 +31,7 @@ function App() {
   const [data, setData] = useState<string[]>([""]);
   const [left, setLeft] = useState("");
   const [right, setRight] = useState("");
+  const bodyRef = useRef<HTMLDivElement>(null);
 
   const isOperator = (key: string): boolean => {
     if (key === "+" || key === "x" || key === "/" || key === "-") return true;
@@ -68,16 +69,14 @@ function App() {
       setRight("");
       setLeft("");
       setData([""]);
-    } else if (key === "=") {
+    } else if (key === "=" || key === "Enter") {
       if (right && left && !isOperator(input[input.length - 1])) {
-        console.log(input)
-        calc.init(input);
-        setInput(() => {
-          let val = calc.do().toString();
+        console.log(input);
+        calc.do(input).then((val: string) => {
           setLeft("");
           setRight(val);
           setData([""]);
-          return val;
+          setInput(val);
         });
       }
     } else if (key === ".") {
@@ -85,13 +84,15 @@ function App() {
         setRight((prevState) =>
           prevState.includes(".") ? prevState : prevState + key
         );
+      } else {
+        setRight((prevState) => prevState + key);
       }
     } else if (isOperator(key)) {
       if (right) {
         addSegment(right);
         addSegment(key);
       }
-    } else if (key === "←") {
+    } else if (key === "←" || key === "Backspace") {
       if (right) {
         setRight((prevState) => prevState.slice(0, -1));
       } else {
@@ -102,12 +103,29 @@ function App() {
     }
   };
 
+  const keyPressHandler = (key: string) => {
+    if (!key) return;
+    console.log(key);
+    if (isOperator(key)) {
+      key = key === "*" ? "x" : key;
+    } else if (!parseFloat(key)) {
+      if (key !== "Backspace" && key !== "Enter" && key !== "0") return;
+    }
+    getInput(key);
+  };
+
   useEffect(() => {
     setInput(left + right);
   }, [right, left]);
 
   return (
-    <div className="body">
+    <div
+      className="body"
+      ref={bodyRef}
+      onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) =>
+        keyPressHandler(e.key)
+      }
+    >
       <Display text={input} />
       <KeyBox keys={keys} onPressHandler={(key: string) => getInput(key)} />
     </div>

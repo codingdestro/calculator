@@ -1,67 +1,22 @@
-class Vertex {
-  public val: string;
-  public next: any;
-  public prev: any;
-
-  constructor(val: string) {
-    this.val = val;
-    this.next = null;
-    this.prev = null;
-  }
-}
-
-class List {
-  public head: Vertex | null;
-  public tail: Vertex | null;
-  constructor() {
-    this.head = null;
-    this.tail = null;
-  }
-  init(Vertex: Vertex) {
-    this.head = Vertex;
-    this.tail = Vertex;
-  }
-  addVertex(val: string) {
-    let newVertex = new Vertex(val);
-    if (this.head === null) {
-      this.init(newVertex);
-    }
-    newVertex.prev = this.tail;
-    this.tail!.next = newVertex;
-    this.tail = newVertex;
-    return newVertex;
-  }
-  travel() {
-    let nd = this.head;
-    console.group("hi");
-    while (nd !== null) {
-      console.log(nd.val, " → ");
-      nd = nd.next;
-    }
-    console.groupEnd();
-  }
-}
+import { List, Vertex } from "./utils";
 
 class Calc {
   public str: string;
   public list: List;
-  public Fstack: any[];
-  public Sstack: any[];
+  public stack: any[];
   public val: number;
   constructor() {
     this.str = "";
     this.list = new List();
-    this.Fstack = [];
-    this.Sstack = [];
+    this.stack = [];
     this.val = 0;
-  }
-  init(str: string) {
-    this.str = str;
   }
 
   split() {
     let x = "";
     let ope = "";
+    let Fstack = [];
+    let Sstack = [];
 
     for (let i = 0; i < this.str.length; i++) {
       let char = this.str[i];
@@ -70,12 +25,12 @@ class Calc {
         ope = char;
         let val = parseFloat(x);
 
-        this.list.addVertex(val.toString());
+        this.list.addVertex(val);
         let Vertex = this.list.addVertex(ope);
         if (ope == "+" || ope == "-") {
-          this.Sstack.push(Vertex);
+          Sstack.push(Vertex);
         } else {
-          this.Fstack.push(Vertex);
+          Fstack.push(Vertex);
         }
         x = "";
       } else {
@@ -87,45 +42,57 @@ class Calc {
         x += char;
       }
     }
+    this.stack = [...Fstack, ...Sstack];
   }
 
-  do() {
+  do(str: string) {
+    this.str = str;
     this.split();
-    let stack = [...this.Fstack, ...this.Sstack];
     let vertex = null;
-    while (stack.length > 0) {
-      vertex = stack.shift();
+    const calculate = () => {
+      while (this.stack.length > 0) {
+        vertex = this.stack.shift();
 
-      let x = parseFloat(vertex.prev?.val);
-      let y = parseFloat(vertex.next.val);
-      // console.log(x, "←", Vertex.val, "→", y);
+        let x = parseFloat(vertex.prev?.val);
+        let y = parseFloat(vertex.next.val);
 
-      if (vertex.val == "+") {
-        x = x + y;
-      } else if (vertex.val == "-") {
-        x = x - y;
-      } else if (vertex.val == "x") {
-        x = x * y;
-      } else if (vertex.val == "/") {
-        x = x / y;
+        if (vertex.val == "+") {
+          x = x + y;
+        } else if (vertex.val == "-") {
+          x = x - y;
+        } else if (vertex.val == "x") {
+          x = x * y;
+        } else if (vertex.val == "/") {
+          x = x / y;
+        }
+        this.val = x;
+
+        let newVertex = new Vertex(x);
+
+        if (vertex.next.next !== null) {
+          let right = vertex.next.next;
+          right.prev = newVertex;
+          newVertex.next = right;
+        }
+        if (vertex.prev.prev !== null) {
+          let left = vertex.prev.prev;
+          left.next = newVertex;
+          newVertex.prev = left;
+        }
       }
-      this.val = x;
+      return this.val.toString();
+    };
 
-      let newVertex = new Vertex(x.toString());
-
-      if (vertex.next.next !== null) {
-        let right = vertex.next.next;
-        right.prev = newVertex;
-        newVertex.next = right;
+    let promise: Promise<string> = new Promise((resolve, reject) => {
+      let val = calculate();
+      if (val) {
+        resolve(val);
+      } else {
+        reject("0");
       }
-      if (vertex.prev.prev !== null) {
-        let left = vertex.prev.prev;
-        left.next = newVertex;
-        newVertex.prev = left;
-      }
-    }
+    });
 
-    return this.val;
+    return promise;
   }
 }
 export default Calc;
