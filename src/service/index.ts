@@ -1,4 +1,4 @@
-import { List, Vertex } from "./utils";
+import { List, Vertex, isOperator } from "./utils";
 
 class Calc {
   public str: string;
@@ -14,20 +14,29 @@ class Calc {
 
   split() {
     let x = "";
-    let ope = "";
     let Fstack = [];
     let Sstack = [];
+    this.list = new List();
 
     for (let i = 0; i < this.str.length; i++) {
       let char = this.str[i];
       if (char == "") continue;
-      if (char == "+" || char == "x" || char == "/" || char == "-") {
-        ope = char;
+      if (isOperator(char)) {
+        if (
+          char === "-" &&
+          x === "" &&
+          this.list.length === 0 &&
+          Sstack.length === 0 &&
+          Fstack.length === 0
+        ) {
+          x += char;
+          continue;
+        }
         let val = parseFloat(x);
 
         this.list.addVertex(val);
-        let Vertex = this.list.addVertex(ope);
-        if (ope == "+" || ope == "-") {
+        let Vertex = this.list.addVertex(char);
+        if (char == "+" || char == "-") {
           Sstack.push(Vertex);
         } else {
           Fstack.push(Vertex);
@@ -53,21 +62,9 @@ class Calc {
       while (this.stack.length > 0) {
         vertex = this.stack.shift();
 
-        let x = parseFloat(vertex.prev?.val);
-        let y = parseFloat(vertex.next.val);
+        this.val = doMath(vertex.prev?.val, vertex.next.val, vertex.val);
 
-        if (vertex.val == "+") {
-          x = x + y;
-        } else if (vertex.val == "-") {
-          x = x - y;
-        } else if (vertex.val == "x") {
-          x = x * y;
-        } else if (vertex.val == "/") {
-          x = x / y;
-        }
-        this.val = x;
-
-        let newVertex = new Vertex(x);
+        let newVertex = new Vertex(this.val);
 
         if (vertex.next.next !== null) {
           let right = vertex.next.next;
@@ -96,20 +93,17 @@ class Calc {
   }
 }
 export default Calc;
-
-// const equations = [
-//   { equation: "100 - 100 / 2 x 0 + 5", answer: 105 },
-//   { equation: "20 x 3 - 4 / 2 + 7", answer: 65 },
-//   { equation: "15 + 2 x 6 / 3 - 5", answer: 14 },
-//   { equation: "8 - 2 x 4 / 2 + 6", answer: 10 },
-// ];
-
-// let x = new Calc();
-// for (let i = 0; i < equations.length; i++) {
-//   let equation = equations[i].equation;
-//   let answer = equations[i].answer;
-//   x.init(equation);
-//   let val = x.do();
-
-//   console.log(equation, " ", val, " ", val == answer ? "✔" : "✗");
-// }
+const doMath = (a: string, b: string, ope: string): number => {
+  let x = parseFloat(a);
+  let y = parseFloat(b);
+  if (ope == "+") {
+    x = x + y;
+  } else if (ope == "-") {
+    x = x - y;
+  } else if (ope == "x") {
+    x = x * y;
+  } else if (ope == "/") {
+    x = x / y;
+  }
+  return parseFloat(x.toFixed(9));
+};

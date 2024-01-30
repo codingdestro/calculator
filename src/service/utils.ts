@@ -13,9 +13,11 @@ export class Vertex {
 export class List {
   public head: Vertex | null;
   public tail: Vertex | null;
+  public length: number;
   constructor() {
     this.head = null;
     this.tail = null;
+    this.length = 0;
   }
   init(Vertex: Vertex) {
     this.head = Vertex;
@@ -29,6 +31,12 @@ export class List {
     newVertex.prev = this.tail;
     this.tail!.next = newVertex;
     this.tail = newVertex;
+    this.length += 1;
     return newVertex;
   }
 }
+
+export const isOperator = (key: string): boolean => {
+  if (key === "+" || key === "x" || key === "/" || key === "-") return true;
+  return false;
+};
