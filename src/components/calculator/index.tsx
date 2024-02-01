@@ -27,10 +27,10 @@ const keys = [
 function Calculator() {
   const { input, getInput } = useGetInput();
   return (
-    <div className="body">
+    <>
       <Display text={input} />
       <KeyBox keys={keys} onPressHandler={(key: string) => getInput(key)} />
-    </div>
+    </>
   );
 }
 

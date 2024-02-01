@@ -1,11 +1,18 @@
-import Calculator from "./components/calculator"
+import ToggleBar from "./components/ToggleBar";
+import Calculator from "./components/calculator";
+import Converter from "./components/converter";
 
 const App = () => {
   return (
     <>
-    <Calculator/>
+      <div>
+        <ToggleBar>
+          <Calculator />
+          <Converter />
+        </ToggleBar>
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
