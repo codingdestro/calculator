@@ -4,7 +4,7 @@ type Props = {
   children: [JSX.Element, JSX.Element];
 };
 const ToggleBar = ({ children }: Props) => {
-  const [toggle, setToggle] = useState(false);
+  const [toggle, setToggle] = useState(true);
   const [currentChild, setCurrentChild] = useState(0);
 
   const onToggle = () => {

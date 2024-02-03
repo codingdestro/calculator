@@ -1,0 +1,28 @@
+.converter {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    position: relative;
+    font-family: monospace;
+    .heading {
+        font-size: 20px;
+        text-align: center;
+        font-weight: 900;
+        letter-spacing: 1px;
+        text-transform: capitalize;
+    }
+    h3 {
+        text-align: center;
+        font-size: 24px;
+        text-decoration: underline;
+        margin-bottom: .5rem;
+        width: 100%;
+        position: absolute;
+        top: 2%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}

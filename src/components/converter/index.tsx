@@ -1,8 +1,13 @@
+import "../../styles/select.scss";
+import "../../styles/converter.scss";
+import SelectBox from "./SelectBox";
+import { LENGHT } from "../../service/data";
 const index = () => {
   return (
-    <>
-      <h1>this is converter section here</h1>
-    </>
+    <div className="converter">
+      <h3 >Unit Converter</h3>
+      <SelectBox options={LENGHT} />
+    </div>
   );
 };
 
