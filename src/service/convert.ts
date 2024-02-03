@@ -31,5 +31,5 @@ export const convert = (
     if (targetKey === key) break;
     i++;
   }
-  return parseFloat(val.toFixed(5));
+  return val;
 };

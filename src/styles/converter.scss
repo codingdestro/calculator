@@ -1,3 +1,9 @@
+@mixin active {
+    font-weight: 700;
+    transition: 0.2s;
+    background-color: white;
+    scale: 1;
+}
 .converter {
     width: 100%;
     height: 100%;
@@ -7,22 +13,43 @@
     gap: 1rem;
     position: relative;
     font-family: monospace;
-    .heading {
-        font-size: 20px;
-        text-align: center;
-        font-weight: 900;
-        letter-spacing: 1px;
-        text-transform: capitalize;
+    img {
+        width: 24px;
+        transform: rotate(90deg) translate(0, 50%);
+        position: relative;
+        left: 50%;
     }
+
     h3 {
         text-align: center;
         font-size: 24px;
         text-decoration: underline;
-        margin-bottom: .5rem;
+        margin-bottom: 0.5rem;
         width: 100%;
         position: absolute;
         top: 2%;
         left: 50%;
         transform: translateX(-50%);
+    }
+    .unit-box {
+        position: absolute;
+        top: 12%;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        .unit {
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            text-transform: capitalize;
+            scale: 0.9;
+
+            &:hover {
+                @include active;
+            }
+            &.show {
+                @include active;
+            }
+        }
     }
 }

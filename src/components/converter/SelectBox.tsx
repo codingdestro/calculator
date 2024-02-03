@@ -11,14 +11,13 @@ const SelectBox = ({ options }: Props) => {
   const [node2, setNode2] = useState({ key: "0", val: "0" });
   return (
     <>
-      <p className="heading">From</p>
       <Select
         options={options}
         node={node1}
         setNode={setNode1}
         setNode2={setNode2}
       />
-      <p className="heading">To</p>
+      <img src="/converter.png"  alt="converterlogo" />
       <Select
         options={options}
         node={node2}
