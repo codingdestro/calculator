@@ -19,13 +19,11 @@ export const convert = (
   let node = 0;
   let key = "";
   while (i >= 0 && i < nodes.length) {
-    node = up ? y + i : x - i;
+    node = up ? x + i + 1 : x - i;
 
     val = up
       ? goNext(val, nodes[node].constant)
       : goPrev(val, nodes[node].constant);
-
-    val = parseFloat(val.toFixed(8));
 
     key = nodes[up ? node : node - 1].key;
     if (targetKey === key) break;
