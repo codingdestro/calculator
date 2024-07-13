@@ -27,16 +27,18 @@ const ToggleBar = ({ children }: Props) => {
         ))}
       </div>
       <div className="toggle-header" onClick={onToggle}>
-        {["calculator2", "converter"].map((val: string, idx: number) => {
-          return (
-            <div
-              className={`${idx === currentChild ? "active" : ""}`}
-              key={idx}
-            >
-              <img src={`/${val}.png`} width={26} alt="x" />
-            </div>
-          );
-        })}
+        {["calculator2", "converter", "converter"].map(
+          (val: string, idx: number) => {
+            return (
+              <div
+                className={`${idx === currentChild ? "active" : ""}`}
+                key={idx}
+              >
+                <img src={`/${val}.png`} width={26} alt="x" />
+              </div>
+            );
+          },
+        )}
       </div>
     </div>
   );

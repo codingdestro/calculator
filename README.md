@@ -1,30 +1,61 @@
-# React + TypeScript + Vite
+# The Calculator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+It is a full functional Calculator.
 
-Currently, two official plugins are available:
+## Project Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project is a React.js application with scss and Typescript.
 
-## Expanding the ESLint configuration
+It can be used for basic calculation and unit conversion.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Getting Started
 
-- Configure the top-level `parserOptions` property like this:
+### Installation
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+1.Clone the reop:
+    
+    ```bash
+    git clone https://github.com/condingdestro/calculator.git
+    cd calculator
+    ```
+2. Install dependencies:
+    ```bash
+    npm install
+    ```
+
+    or 
+
+    ```bash
+    yarn
+    ```
+
+### Runnig the development server
+
+```bash
+npm run dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+or 
+
+```bash
+yarn dev
+```
+
+Open [http://localhost:5173](http://localhost:5173) in you browser to view the application.
+
+### Building for production
+
+To create an optimization production build, run:
+
+```bash
+npm run build
+```
+
+or 
+
+```bash
+yarn build
+```
+
+This will generate a out directory containing the optimized build.
+
