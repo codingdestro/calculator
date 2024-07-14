@@ -4,7 +4,10 @@ interface KeyProps {
 }
 const Key = ({ name, onPress }: KeyProps) => {
   return (
-    <button onClick={() => onPress(name)} className="key">
+    <button
+      onClick={() => onPress(name)}
+      className="border flex-1 px-3 py-1 rounded-md "
+    >
       {name}
     </button>
   );
