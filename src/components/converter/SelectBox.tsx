@@ -17,7 +17,7 @@ const SelectBox = ({ options }: Props) => {
         setNode={setNode1}
         setNode2={setNode2}
       />
-      <img src="/converter.png"  alt="converterlogo" />
+      {/* <img src="/converter.png"  alt="converterlogo" /> */}
       <Select
         options={options}
         node={node2}

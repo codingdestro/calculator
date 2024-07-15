@@ -1,14 +1,16 @@
-import ToggleBar from "./components/ToggleBar";
 import Calculator from "./components/calculator";
-import Converter from "./components/converter";
+import ToggleBar from "./components/ToggleBar";
+import UnitConverter from "./components/converter";
+
+const Components = ["calculator", "unit converter"];
 
 const App = () => {
   return (
     <>
       <div>
-        <ToggleBar>
+        <ToggleBar elements={Components}>
           <Calculator />
-          <Converter />
+          <UnitConverter />
         </ToggleBar>
       </div>
     </>

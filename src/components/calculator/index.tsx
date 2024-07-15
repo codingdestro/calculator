@@ -28,8 +28,10 @@ function Calculator() {
   const { input, getInput } = useGetInput();
   return (
     <>
-      <Display text={input} />
-      <KeyBox keys={keys} onPressHandler={(key: string) => getInput(key)} />
+      <div className="max-w-[300px] border rounded-lg shadow-md p-5 flex flex-col gap-5">
+        <Display text={input} />
+        <KeyBox keys={keys} onPressHandler={(key: string) => getInput(key)} />
+      </div>
     </>
   );
 }

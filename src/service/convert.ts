@@ -10,12 +10,12 @@ export const convert = (
   x: number,
   y: number,
   val: number,
-  nodes: node[]
+  nodes: node[],
 ): number => {
   if (x === y) return val;
   let i = 0;
-  let up = x > y ? false : true;
-  let targetKey = nodes[y].key;
+  const up = x > y ? false : true;
+  const targetKey = nodes[y].key;
   let node = 0;
   let key = "";
   while (i >= 0 && i < nodes.length) {

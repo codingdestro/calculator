@@ -1,43 +1,29 @@
 import { useState } from "react";
-import "../styles/toggleBar.scss";
 type Props = {
-  children: [JSX.Element, JSX.Element];
+  children: JSX.Element[];
+  elements: string[];
 };
-const ToggleBar = ({ children }: Props) => {
-  const [toggle, setToggle] = useState(false);
+const ToggleBar = ({ children, elements }: Props) => {
   const [currentChild, setCurrentChild] = useState(0);
 
-  const onToggle = () => {
-    setToggle((prevState) => {
-      setCurrentChild(prevState ? 0 : 1);
-
-      return !toggle;
-    });
+  const onChangeElement = (idx: number) => {
+    if (idx < children.length) setCurrentChild(idx);
   };
   return (
-    <div className="container">
-      <div className="windows ">
-        {children.map((child: JSX.Element, idx: number) => (
-          <div
-            className={`body ${toggle ? "slideRight" : "slideLeft"}`}
-            key={idx}
+    <div className="flex flex-col items-center justify-center  gap-5 p-5 min-h-screen">
+      <div className="flex items-center gap-5 border  w-[280px] p-1 overflow-auto  rounded-md">
+        {elements.map((ele: string, idx: number) => (
+          <button
+            className={`border px-2 whitespace-nowrap rounded-md
+              shadow-sm ${currentChild == idx && "bg-violet-100"}`}
+            onClick={() => onChangeElement(idx)}
           >
-            {child}
-          </div>
+            {ele}
+          </button>
         ))}
       </div>
-      <div className="toggle-header" onClick={onToggle}>
-        {["calculator2", "converter"].map((val: string, idx: number) => {
-          return (
-            <div
-              className={`${idx === currentChild ? "active" : ""}`}
-              key={idx}
-            >
-              <img src={`/${val}.png`} width={26} alt="x" />
-            </div>
-          );
-        })}
-      </div>
+
+      <div className="">{children[currentChild]}</div>
     </div>
   );
 };
