@@ -4,14 +4,14 @@ export function calculateAge(
   y: number,
 ): [number, number, number] {
   const dob = new Date(y, m, d);
-  let [mm, dd, yy] = new Date()
-    .toLocaleDateString()
-    .split("/")
-    .map((ele) => parseInt(ele));
+  const date = new Date();
+
+  let dd = date.getDate();
+  let mm = date.getMonth();
+  let yy = date.getFullYear();
 
   if (dd < dob.getDate()) {
-    dd = dd + new Date(yy, mm, 0).getDate();
-    mm -= 1;
+    dd = dd + new Date(yy, mm - 1, 0).getDate();
   }
 
   if (mm < dob.getMonth()) {
