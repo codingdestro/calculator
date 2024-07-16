@@ -2,7 +2,7 @@ export function calculateAge(
   d: number,
   m: number,
   y: number,
-): { days: number; months: number; years: number } {
+): [number, number, number] {
   const dob = new Date(y, m, d);
   let [mm, dd, yy] = new Date()
     .toLocaleDateString()
@@ -22,5 +22,5 @@ export function calculateAge(
   const days = dd - dob.getDate();
   const months = mm - dob.getMonth();
   const years = yy - dob.getFullYear();
-  return { days, months, years };
+  return [days, months, years];
 }
