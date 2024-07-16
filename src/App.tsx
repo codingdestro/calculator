@@ -1,8 +1,9 @@
 import Calculator from "./components/calculator";
 import ToggleBar from "./components/ToggleBar";
 import UnitConverter from "./components/converter";
+import AgeCalc from "./components/age_calc";
 
-const Components = ["calculator", "unit converter"];
+const Components = ["calculator", "unit converter", "age calc"];
 
 const App = () => {
   return (
@@ -11,6 +12,7 @@ const App = () => {
         <ToggleBar elements={Components}>
           <Calculator />
           <UnitConverter />
+          <AgeCalc />
         </ToggleBar>
       </div>
     </>
