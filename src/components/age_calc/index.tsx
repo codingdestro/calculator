@@ -37,7 +37,7 @@ const Home = () => {
     const { day, month, year } = date;
     if (day && month && year) {
       const ag = calc(day, month, year).map((ele: number) => ele.toString());
-      setAge(ag);
+      setAge([ag[0], ag[1], ag[2]]);
       !showAge && setShowAge(true);
     } else {
       alert("please select right date!");
