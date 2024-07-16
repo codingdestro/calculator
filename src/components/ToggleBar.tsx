@@ -14,6 +14,7 @@ const ToggleBar = ({ children, elements }: Props) => {
       <div className="flex items-center gap-5 border  w-[280px] p-1 overflow-auto  rounded-md">
         {elements.map((ele: string, idx: number) => (
           <button
+            key={idx}
             className={`border px-2 whitespace-nowrap rounded-md
               shadow-sm ${currentChild == idx && "bg-violet-100"}`}
             onClick={() => onChangeElement(idx)}
