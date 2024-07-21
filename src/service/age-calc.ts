@@ -12,6 +12,7 @@ export function calculateAge(
 
   if (dd < dob.getDate()) {
     dd = dd + new Date(yy, mm, 0).getDate();
+    mm -= 1;
   }
 
   if (mm < dob.getMonth()) {
