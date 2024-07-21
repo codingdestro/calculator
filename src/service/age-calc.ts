@@ -3,7 +3,7 @@ export function calculateAge(
   m: number,
   y: number,
 ): [number, number, number] {
-  const dob = new Date(y, m, d);
+  const dob = new Date(y, m - 1, d);
   const date = new Date();
 
   let dd = date.getDate();
@@ -11,7 +11,7 @@ export function calculateAge(
   let yy = date.getFullYear();
 
   if (dd < dob.getDate()) {
-    dd = dd + new Date(yy, mm - 1, 0).getDate();
+    dd = dd + new Date(yy, mm, 0).getDate();
   }
 
   if (mm < dob.getMonth()) {
