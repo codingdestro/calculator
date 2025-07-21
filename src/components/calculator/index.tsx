@@ -4,8 +4,8 @@ import useGetInput from "../../hooks/useGetInput";
 
 const keys = [
   "C",
-  "00",
   "←",
+  "00",
   "/",
   "7",
   "8",
@@ -27,12 +27,14 @@ const keys = [
 function Calculator() {
   const { input, getInput } = useGetInput();
   return (
-    <>
-      <div className="max-w-[300px] border rounded-lg shadow-md p-5 flex flex-col gap-5">
-        <Display text={input} />
+    <div className="w-full max-w-xs sm:max-w-sm mx-auto">
+      <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl shadow-2xl p-4 sm:p-6 border border-gray-700">
+        <div className="mb-4 sm:mb-6">
+          <Display text={input} />
+        </div>
         <KeyBox keys={keys} onPressHandler={(key: string) => getInput(key)} />
       </div>
-    </>
+    </div>
   );
 }
 
