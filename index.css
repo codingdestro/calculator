@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Hide spinner buttons on number inputs */
 input[type="number"]::-webkit-inner-spin-button {
     appearance: none;
     margin: 0;
@@ -14,4 +15,43 @@ input[type="number"]::-webkit-outer-spin-button {
 
 input[type="number"] {
     appearance: textfield;
+}
+
+/* Custom scrollbar styles for toggle bar */
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+/* Smooth transitions for better UX */
+* {
+    transition: all 0.2s ease-in-out;
+}
+
+/* Focus styles for accessibility */
+input:focus,
+select:focus,
+button:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* Animation for fade-in effect */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fadeIn {
+    animation: fadeIn 0.5s ease-out forwards;
 }
