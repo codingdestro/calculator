@@ -77,7 +77,7 @@ const AgeCalc = () => {
 
   return (
     <div className="w-full max-w-md mx-auto">
-      <div className="bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+      <div className="bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden animate-fadeIn">
         {/* Header */}
         <div className="bg-gradient-to-r from-green-500 to-teal-600 text-white p-6">
           <h1 className="text-xl sm:text-2xl font-bold text-center flex items-center justify-center gap-2">

@@ -14,7 +14,7 @@ const ToggleBar = ({ children, elements }: Props) => {
 
   return (
     <div className="flex flex-col items-center gap-8 p-4 sm:p-6 min-h-screen">
-      <div className="flex items-center justify-center gap-1 bg-white rounded-xl p-2 shadow-lg border border-gray-200 overflow-x-auto scrollbar-hide w-full max-w-screen-2xl">
+      <div className="flex items-center justiy-center sm:justify-center gap-1 bg-white rounded-xl p-2 shadow-lg border border-gray-200 overflow-x-auto scrollbar-hide w-full max-w-screen-2xl">
         {elements.map((ele: string, idx: number) => (
           <button
             key={idx}

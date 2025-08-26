@@ -28,7 +28,7 @@ function Calculator() {
   const { input, getInput } = useGetInput();
   return (
     <div className="w-full max-w-xs sm:max-w-sm mx-auto">
-      <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl shadow-2xl p-4 sm:p-6 border border-gray-700">
+      <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl shadow-2xl p-4 sm:p-6 border border-gray-700 animate-fadeIn">
         <div className="mb-4 sm:mb-6">
           <Display text={input} />
         </div>
