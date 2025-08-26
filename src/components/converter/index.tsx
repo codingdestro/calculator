@@ -7,7 +7,7 @@ const UnitConverter = () => {
 
   return (
     <div className="w-full max-w-md mx-auto">
-      <div className="bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+      <div className="bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden animate-fadeIn">
         {/* Header */}
         <div className="bg-gradient-to-r from-blue-500 to-purple-600 text-white p-6">
           <h1 className="text-xl sm:text-2xl font-bold text-center">
